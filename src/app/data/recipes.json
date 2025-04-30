@@ -1,0 +1,137 @@
+[
+    {
+        "name": "Ensalada Cesar",
+        "description": "Ensalada clasica con aderezo Cesar y crutones",
+        "ingredients": [
+            {
+                "name": "Lechuga",
+                "amount": "1"
+            },
+            {
+                "name": "Pollo a la parrilla",
+                "amount": "1"
+            },
+            {
+                "name": "Aderezo Cesar",
+                "amount": "1"
+            },
+            {
+                "name": "Queso parmesano",
+                "amount": "1"
+            },
+            {
+                "name": "Crutones",
+                "amount": "1"
+            }
+        ],
+        "imagePath": "https://www.goodnes.com/sites/g/files/jgfbjl321/files/srh_recipes/755f697272cbcdc6e5df2adb44b1b705.jpg"
+    },
+    {
+        "name": "Sandwich de Pollo",
+        "description": "Sandwich con pollo, queso parmesano y lechuga",
+        "ingredients": [
+            {
+                "name": "Pan de hamburguesas",
+                "amount": "1"
+            },
+            {
+                "name": "Pollo a la parrilla",
+                "amount": "1"
+            },
+            {
+                "name": "Queso parmesano",
+                "amount": "1"
+            },
+            {
+                "name": "Lechuga",
+                "amount": "1"
+            },
+            {
+                "name": "Mayonesa",
+                "amount": "1"
+            }
+        ],
+        "imagePath": "https://www.ourhappymess.com/wp-content/uploads/2023/03/Grilled-Chicken-Sandwich-square-featured.jpg"
+    },
+    {
+        "name": "Pasta Alfredo",
+        "description": "Pasta cremosa con salsa Alfredo y pollo",
+        "ingredients": [
+            {
+                "name": "Pasta fettuccine",
+                "amount": "1"
+            },
+            {
+                "name": "Crema de leche",
+                "amount": "1"
+            },
+            {
+                "name": "Queso parmesano",
+                "amount": "1"
+            },
+            {
+                "name": "Manteca",
+                "amount": "1"
+            },
+            {
+                "name": "Pollo a la plancha",
+                "amount": "1"
+            }
+        ],
+        "imagePath": "https://static01.nyt.com/images/2023/09/21/multimedia/ND-Chicken-alfredo-gcbl/ND-Chicken-alfredo-gcbl-mediumSquareAt3X.jpg"
+    },
+    {
+        "name": "Tacos de carnita",
+        "description": "Tacos mexicanos con carne de cerdo cocida lentamente",
+        "ingredients": [
+            {
+                "name": "Tortillas de maiz",
+                "amount": "1"
+            },
+            {
+                "name": "Carnitas de cerdo",
+                "amount": "1"
+            },
+            {
+                "name": "Cilantro",
+                "amount": "1"
+            },
+            {
+                "name": "Cebolla picada",
+                "amount": "1"
+            },
+            {
+                "name": "Salsa verde",
+                "amount": "1"
+            }
+        ],
+        "imagePath": "https://pinchandswirl.com/wp-content/uploads/2014/11/Pork-Carnitas-Tacos-square.jpg"
+    },
+    {
+        "name": "Hamburguesa Clasica",
+        "description": "Hamburguesa con carne, queso cheddar y vegetales",
+        "ingredients": [
+            {
+                "name": "Pan de hamburguesa",
+                "amount": "1"
+            },
+            {
+                "name": "Carne de res",
+                "amount": "1"
+            },
+            {
+                "name": "Queso cheddar",
+                "amount": "1"
+            },
+            {
+                "name": "Lechuga",
+                "amount": "1"
+            },
+            {
+                "name": "Tomate",
+                "amount": "1"
+            }
+        ],
+        "imagePath": "https://media.istockphoto.com/id/1494719284/photo/brioche-burger.jpg?s=612x612&w=0&k=20&c=uqXAtJpdoX_iAvOBe3ztuXZwlYnDoWKIHIiPr0vpZBE="
+    }
+]
