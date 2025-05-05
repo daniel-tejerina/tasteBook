@@ -1,12 +1,30 @@
-<p>nav-bar works!</p>
+<nav class="py-2 bg-body-tertiary border-bottom">
+    <div class="container d-flex flex-wrap">
+      
+      <!-- NAVBAR ITEMS -->
+      <ul class="nav me-auto">
+        <li class="nav-item" *ngFor=" let item of navbarMenu.mainMenu">
+            <a [routerLink]="item.router" class="nav-link link-body-emphasis px-2 active" aria-current="page">{{item.name}}</a>
+        </li>
+      </ul>
 
-<!-- <nav class="navbar">
-    <div class="navbar-left">
-        <i class="uil uil-restaurant"></i>
-        <span class="brand">TasteBook</span>
-    </div>
+      <!-- NAVBAR LOGIN/LOGOUT STATUS -->
+      <ul class="nav">
+        <li class="nav-item" *ngFor=" let item of navbarMenu.authOptions">
+          <a [routerLink]="item.router" class="nav-link link-body-emphasis px-2 active" aria-current="page">{{item.name}}</a>
+      </li>
+      </ul>
 
-    <div class="navbar-center">
-        <input type="text" placeholder="Buscar..." class="search">
     </div>
-</nav> -->
+</nav>
+
+<header class="py-3 mb-4 border-bottom">
+    <div class="container d-flex flex-wrap justify-content-center">
+      <a href="/" class="navbar-brand d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
+        <i class="uil uil-restaurant fs-4 me-2"></i><span class="fs-4">TasteBook</span>
+      </a>
+      <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
+        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+      </form>
+    </div>
+</header>
