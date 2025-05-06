@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { SectionHeaderComponent } from './components/section-header/section-header.component';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
 import { CardContainerComponent } from './components/card-container/card-container.component';
+import { AuthFormComponent } from './components/auth-form/auth-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,17 +15,20 @@ import { CardContainerComponent } from './components/card-container/card-contain
     NavBarComponent,
     SectionHeaderComponent,
     RecipeCardComponent,
-    CardContainerComponent
+    CardContainerComponent,
+    AuthFormComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   exports: [
     NavBarComponent,
     SectionHeaderComponent,
     RecipeCardComponent,
-    CardContainerComponent
+    CardContainerComponent,
+    AuthFormComponent
   ]
 })
 export class SharedModule { }

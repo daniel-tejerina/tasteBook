@@ -1,0 +1,52 @@
+<div class="text-center mb-4">
+    <i class="uil uil-restaurant fs-4 me-2"></i><span class="fs-4">TasteBook</span>
+</div>
+<!-- <div class="col-md-6"> -->
+    <h2 class="text-center mb-4">{{ title }}</h2>
+
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input 
+                type="email"
+                id="email"
+                formControlName="email"
+                class="form-control"
+                [class.is-invalid]="authForm.get('email')?.invalid && authForm.get('email')?.touched"
+            >
+            <div class="invalid-feedback" *ngIf="authForm.get('email')?.errors?.['required']">
+                El email es obligatorio
+            </div>
+            <div class="invalid-feedback" *ngIf="authForm.get('email')?.errors?.['email']">
+                Formato invalido de email
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input 
+                type="password"
+                id="password"
+                formControlName="password"
+                class="form-control"
+                [class.is-invalid]="authForm.get('password')?.invalid && authForm.get('password')?.touched"
+            >
+            <div class="invalid-feedback" *ngIf="authForm.get('password')?.errors?.['required']">
+                La contraseña es obligatoria
+            </div>
+            <div class="invalid-feedback" *ngIf="authForm.get('password')?.errors?.['minlength']">
+                Minimo 6 caracteres
+            </div>
+            <div class="invalid-feedback" *ngIf="authForm.get('password')?.errors?.['maxlength']">
+                Maximo 12 caracteres
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100" [disabled]="authForm.invalid">
+            {{ buttonLabel }}
+        </button>
+
+        <div *ngIf="errorMessage" class="text-danger text-center mt-2">
+            {{ errorMessage }}
+        </div>
+    </form>

@@ -1,14 +1,14 @@
 <div class="container d-flex align-items-center justify-content-center min-vh-100">
     <div class="card shadow p-4" style="width:100%; max-width: 400px; border-radius: 12px;">
         <app-auth-form
-            [authForm]="formLogin"
-            title="Iniciar Sesion"
-            buttonLabel="Iniciar sesion"
+            [authForm]="formSignUp"
+            title="Registrate"
+            buttonLabel="Registrate"
             [errorMessage]="errorSession ? 'Email o contraseña incorrectos' : ''"
-            (submitted)="sendLogin()"
+            (submitted)="sendSignup()"
         ></app-auth-form>
         <div class="text-center mt-3">
-            <small>¿No tenes cuenta? </small><a href="">Registrate</a>
+            <small>¿Ya tenes cuenta? </small><a href="">Inicia sesion</a>
         </div>
     </div>
 </div>
