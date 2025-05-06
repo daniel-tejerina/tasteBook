@@ -1,1 +1,10 @@
-<p>recipes-page works!</p>
+<div class="container my-4">
+    <app-section-header 
+        title="Recetas"
+        [showActionButton]="true"
+        actionLabel="Nuevo"
+        actionUrl="#">
+    </app-section-header>
+
+    <app-card-container [recipes]="allRecipes"></app-card-container>
+</div>

@@ -29,6 +29,9 @@
       "@shared/*": [
         "src/app/shared/*"
       ],
+      "@data/*": [
+        "src/app/data/*"
+      ]
     }
   },
   "angularCompilerOptions": {

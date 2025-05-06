@@ -1,0 +1,21 @@
+<div class="card h-100 shadow-sm">
+    <img [src]="recipe.imagePath" alt="Imagen" class="card-img-top">
+    <div class="card--body">
+        <h5 class="card-title text-center my-3">{{ recipe.name }}</h5>
+    </div>
+
+    <div class="card-footer d-flex justify-content-between">
+        <button (click)="onViewClick()" class="btn btn-sm btn-ouline-primary">
+            <i class="uil uil-eye"></i>
+        </button>
+        <button (click)="onEditClick()" class="btn btn-sm btn-ouline-secondary">
+            <i class="uil uil-edit"></i>
+        </button>
+        <button (click)="onDeleteClick()" class="btn btn-sm btn-ouline-danger">
+            <i class="uil uil-trash-alt"></i>
+        </button>
+        <button (click)="_favoriteService.toggleFavorite(recipe)" class="btn btn-sm btn-ouline-danger">
+            <i class="uil uil-heart" [style.color]="_favoriteService.isFavorite(recipe) ? 'red' : 'black'"></i>
+        </button>
+    </div>
+</div>

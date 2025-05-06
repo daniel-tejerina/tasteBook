@@ -1,0 +1,9 @@
+<div class="row p-2 mt-5  align-items-center" style="background-color: #DEDEDE; border-radius: 5px;">
+    <div class="col text-start">
+        <h3>{{ title }}</h3>
+    </div>
+
+    <div class="col text-end" *ngIf="showActionButton">
+        <a [href]="actionUrl" class="btn btn-light px-3 me-2">{{actionLabel}}</a>
+    </div>
+</div>

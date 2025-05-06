@@ -1,1 +1,18 @@
-<p>ingredients-page works!</p>
+<div class="container my-4">
+    <app-section-header title="Ingredientes" [showActionButton]="false"></app-section-header>
+
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th class="scope">Nombre</th>
+                <th class="scope">Cantidad</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider" *ngFor="let ingredient of ingredients">
+            <tr>
+                <td>{{ingredient.name}}</td>
+                <td>{{ingredient.amount}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

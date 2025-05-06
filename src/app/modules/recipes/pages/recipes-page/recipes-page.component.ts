@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Recipe } from '@core/models/recipe.model';
+import recipes from "@data/recipes.json"
 
 @Component({
   selector: 'app-recipes-page',
@@ -6,6 +8,11 @@ import { Component } from '@angular/core';
   templateUrl: './recipes-page.component.html',
   styleUrl: './recipes-page.component.css'
 })
-export class RecipesPageComponent {
+export class RecipesPageComponent implements OnInit {
+  allRecipes: Recipe[] = recipes;
+
+  ngOnInit(): void {
+    
+  }
 
 }
