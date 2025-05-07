@@ -7,6 +7,7 @@ import { RecipeCardComponent } from './components/recipe-card/recipe-card.compon
 import { CardContainerComponent } from './components/card-container/card-container.component';
 import { AuthFormComponent } from './components/auth-form/auth-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RecipeFormComponent } from './components/recipe-form/recipe-form.component';
 
 
 
@@ -16,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SectionHeaderComponent,
     RecipeCardComponent,
     CardContainerComponent,
-    AuthFormComponent
+    AuthFormComponent,
+    RecipeFormComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SectionHeaderComponent,
     RecipeCardComponent,
     CardContainerComponent,
-    AuthFormComponent
+    AuthFormComponent,
+    RecipeFormComponent
   ]
 })
 export class SharedModule { }

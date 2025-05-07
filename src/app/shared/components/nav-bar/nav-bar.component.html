@@ -10,9 +10,10 @@
 
       <!-- NAVBAR LOGIN/LOGOUT STATUS -->
       <ul class="nav">
-        <li class="nav-item" *ngFor=" let item of navbarMenu.authOptions">
-          <a [routerLink]="item.router" class="nav-link link-body-emphasis px-2 active" aria-current="page">{{item.name}}</a>
-      </li>
+        <li class="nav-item">
+          <!-- <a (click)="item.action" [routerLink]="item.router" class="nav-link link-body-emphasis px-2 active" aria-current="page">{{item.name}}</a> -->
+          <a (click)="logout()" routerLink="/login" class="nav-link link-body-emphasis px-2 active" aria-current="page">Logout</a>
+        </li>
       </ul>
 
     </div>

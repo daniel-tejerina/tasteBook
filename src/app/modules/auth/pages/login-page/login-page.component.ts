@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '@modules/auth/services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login-page',
@@ -10,6 +13,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class LoginPageComponent implements OnInit {
   formLogin: FormGroup = new FormGroup({});
   errorSession: boolean = false;
+
+  constructor(private _auth: AuthService, private cookie: CookieService, private router: Router) {}
 
   ngOnInit(): void {
     this.formLogin = new FormGroup({
@@ -29,7 +34,20 @@ export class LoginPageComponent implements OnInit {
     if (this.formLogin.invalid) return;
 
     const { email, password } = this.formLogin.value;
-    console.log("Login", { email, password })
+    this._auth.sendCredentials(email, password).subscribe({
+      next: (res) => {
+        console.log("response", res);
+        console.log("toke", res.idToken);
+        this.cookie.set("token", res.idToken, 4, "/");
+        console.log("Login exitoso!");
+        this.router.navigate(["/"]);
+      },
+      error: () => {
+        this.errorSession = true;
+        console.log("Credenciales incorrectas")
+      }
+    })
+    console.log("Login", { email, password });
   }
 
 }

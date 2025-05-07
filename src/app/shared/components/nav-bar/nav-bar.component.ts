@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router"
+import { AuthService } from '@modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -14,7 +15,7 @@ export class NavBarComponent implements OnInit {
     authOptions: Array<any>
   } = { mainMenu: [], authOptions: [] }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public auth: AuthService) {}
 
   ngOnInit(): void {
     this.navbarMenu.mainMenu = [
@@ -34,15 +35,16 @@ export class NavBarComponent implements OnInit {
 
     this.navbarMenu.authOptions = [
       {
-        name: "Login",
-        router: ["/", "login"]
-      },
-      {
         name: "Logout",
-        router: ["/", "login"]
+        router: ["/", "login"],
       }
     ]
     
+  }
+
+  logout(): void {
+    this.auth.logout();
+    this.router.navigate(["/auth/login"])
   }
 
 }
