@@ -1,0 +1,37 @@
+[
+    {
+        "_id": "681b6c5612135606cfae0bdf",
+        "name": "Ensalada Cesar",
+        "description": "Ensalada clasica con aderezo Cesar y crutones",
+        "ingredients": [
+            {
+                "amount": "1",
+                "name": "Lechuga",
+                "_id": "681b6c5612135606cfae0be0"
+            },
+            {
+                "amount": "1",
+                "name": "Pollo a la parrilla",
+                "_id": "681b6c5612135606cfae0be1"
+            },
+            {
+                "amount": "1",
+                "name": "Aderezo Cesar",
+                "_id": "681b6c5612135606cfae0be2"
+            },
+            {
+                "amount": "1",
+                "name": "Queso parmesano",
+                "_id": "681b6c5612135606cfae0be3"
+            },
+            {
+                "amount": "1",
+                "name": "Crutones",
+                "_id": "681b6c5612135606cfae0be4"
+            }
+        ],
+        "imagePath": "https://www.goodnes.com/sites/g/files/jgfbjl321/files/srh_recipes/755f697272cbcdc6e5df2adb44b1b705.jpg",
+        "userEmail": "danieltejerina0493@gmail.com",
+        "__v": 0
+    }
+]
