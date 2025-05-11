@@ -3,8 +3,8 @@
         title="Recetas"
         [showActionButton]="true"
         actionLabel="Nuevo"
-        actionUrl="#">
+        actionUrl="recipes/new">
     </app-section-header>
 
-    <app-card-container [recipes]="allRecipes"></app-card-container>
+    <app-card-container [recipes]="filteredRecipes"></app-card-container>
 </div>

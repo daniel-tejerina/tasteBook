@@ -1,15 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './pages/home-page/home-page.component';
 
 const routes: Routes = [
-  // {
-  //   path: "",
-  //   component: HomePageComponent
-  //   // loadChildren: () => import("@modules/tracks/tracks.module").then(m => m.TracksModule)
-  // },
   {
-    path: "",
+    path: "recipes",
     loadChildren: () => import("@modules/recipes/recipes.module").then(m => m.RecipesModule)
   },
   {
@@ -20,6 +14,10 @@ const routes: Routes = [
     path: "ingredients",
     loadChildren: () => import("@modules/ingredients/ingredients.module").then(m => m.IngredientsModule)
   },
+  {
+    path: "**",
+    redirectTo: "/recipes"
+  }
 ];
 
 @NgModule({

@@ -1,5 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { Recipe } from '@core/models/recipe.model';
+import { RecipeService } from '@shared/services/recipe.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-card-container',
@@ -9,16 +12,50 @@ import { Recipe } from '@core/models/recipe.model';
 })
 export class CardContainerComponent {
   @Input() recipes: Recipe[] = [];
+  @Input() searchTerm: string = "";
+  filteredRecipes: Recipe[] = [];
 
-  onView() {
-    console.log("Ver")
+  constructor(private router: Router, private _recipesService: RecipeService) {}
+
+  receiveData(event: string): void {
+    console.log("Estoy en el componente CardContainer:", event);
   }
 
-  onEdit() {
-    console.log("Editar")
+  onView(id: string) {
+    console.log(id)
+    this.router.navigate(["/recipes/view", id])
   }
 
-  onDelete() {
-    console.log("Borrar")
+  onEdit(id: string) {
+    console.log(id)
+    this.router.navigate(["/recipes/edit", id])
+  }
+
+  onDelete(id: string) {
+    console.log("Borrar", id)
+    Swal.fire({
+      title: "¿Estas seguro?",
+      text: "Esta accion no puede deshacerse",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Si, eliminar",
+      cancelButtonText: "Cancelar"
+    }).then(result => {
+      if (result.isConfirmed) {
+        this._recipesService.deleteRecipe(id).subscribe(() => {
+          Swal.fire("¡Eliminada!", "La receta fue eliminada correctamente.", "success");
+
+          this.loadRecipes();
+        })
+      }
+    })
+  }
+
+  loadRecipes() {
+    this._recipesService.getRecipes().subscribe(recipes => {
+      this.recipes = recipes;
+    })
   }
 }

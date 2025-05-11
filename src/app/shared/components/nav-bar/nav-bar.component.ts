@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from "@angular/router"
 import { AuthService } from '@modules/auth/services/auth.service';
+import { SearchService } from '@shared/services/search.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -15,7 +16,7 @@ export class NavBarComponent implements OnInit {
     authOptions: Array<any>
   } = { mainMenu: [], authOptions: [] }
 
-  constructor(private router: Router, public auth: AuthService) {}
+  constructor(private router: Router, public auth: AuthService, private _searchService: SearchService) {}
 
   ngOnInit(): void {
     this.navbarMenu.mainMenu = [
@@ -41,6 +42,12 @@ export class NavBarComponent implements OnInit {
     ]
     
   }
+
+  onSearch(value: string): void {
+    this._searchService.updateSearchTerm(value);
+    console.log("Navbar ", value)
+  }
+  
 
   logout(): void {
     this.auth.logout();

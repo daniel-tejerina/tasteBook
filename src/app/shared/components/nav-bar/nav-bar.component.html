@@ -25,7 +25,15 @@
         <i class="uil uil-restaurant fs-4 me-2"></i><span class="fs-4">TasteBook</span>
       </a>
       <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        <input 
+          type="search" 
+          name="search"
+          class="form-control" 
+          placeholder="Search..." 
+          aria-label="Search" 
+          #searchInput
+          (input)="onSearch(searchInput.value)"
+        >
       </form>
     </div>
 </header>

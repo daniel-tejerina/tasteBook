@@ -11,9 +11,9 @@ import { FavoritesService } from '@shared/services/favorites.service';
 export class RecipeCardComponent implements OnInit {
   @Input() recipe!: Recipe;
 
-  @Output() view = new EventEmitter<void>();
-  @Output() edit = new EventEmitter<void>();
-  @Output() delete = new EventEmitter<void>();
+  @Output() view = new EventEmitter<string>();
+  @Output() edit = new EventEmitter<string>();
+  @Output() delete = new EventEmitter<string>();
 
   isFavorite: boolean = false;
 
@@ -26,14 +26,14 @@ export class RecipeCardComponent implements OnInit {
   // CRUD
 
   onViewClick(): void {
-    this.view.emit();
+    this.view.emit(this.recipe._id);
   }
 
   onEditClick(): void {
-    this.edit.emit()
+    this.edit.emit(this.recipe._id)
   }
 
   onDeleteClick() {
-    this.delete.emit()
+    this.delete.emit(this.recipe._id)
   }
 }

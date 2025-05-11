@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Recipe } from '@core/models/recipe.model';
+import { RecipeService } from '@shared/services/recipe.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-recipe-page',
@@ -8,44 +11,34 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './update-recipe-page.component.css'
 })
 export class UpdateRecipePageComponent implements OnInit {
-  recipe: any;
+  recipe!: Recipe | undefined;
+  id!: string | null;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute, 
+    private router: Router,
+    private _recipesService: RecipeService,
+  ) {}
 
   ngOnInit(): void {
-    const recipeId = this.route.snapshot.paramMap.get("id");
+    this.id = this.route.snapshot.paramMap.get("id");
 
-    this.recipe = {
-      "name": "Ensalada Cesar",
-      "description": "Ensalada clasica con aderezo Cesar y crutones",
-      "ingredients": [
-          {
-              "name": "Lechuga",
-              "amount": 1
-          },
-          {
-              "name": "Pollo a la parrilla",
-              "amount": 1
-          },
-          {
-              "name": "Aderezo Cesar",
-              "amount": 1
-          },
-          {
-              "name": "Queso parmesano",
-              "amount": 1
-          },
-          {
-              "name": "Crutones",
-              "amount": 1
-          }
-      ],
-      "imagePath": "https://www.goodnes.com/sites/g/files/jgfbjl321/files/srh_recipes/755f697272cbcdc6e5df2adb44b1b705.jpg"
-    }
+    console.log("ID recibido", this.id)
+
+    this._recipesService.getRecipeById(this.id).subscribe(data => {
+      this.recipe = data!;
+    })
   }
 
   handleEdit(formValue: any) {
     console.log("Editar", formValue);
-    this.router.navigate(["/"])
+    this._recipesService.updateRecipe(this.id, formValue).subscribe(() => {
+      Swal.fire({
+        icon: "success",
+        title: "Receta actualizada",
+        timer: 2000,
+        showConfirmButton: false
+      }).then(() => this.router.navigate(["/"]))
+    })
   }
 }

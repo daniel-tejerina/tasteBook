@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Ingredient } from '@core/models/ingredient.model';
 
 @Component({
   selector: 'app-recipe-form',
@@ -8,7 +7,7 @@ import { Ingredient } from '@core/models/ingredient.model';
   templateUrl: './recipe-form.component.html',
   styleUrl: './recipe-form.component.css'
 })
-export class RecipeFormComponent implements OnInit {
+export class RecipeFormComponent implements OnInit, OnChanges {
   @Input() initialData: any = null;
   @Output() formSubmit = new EventEmitter<any>()
 
@@ -20,7 +19,7 @@ export class RecipeFormComponent implements OnInit {
     this.form = this.fb.group({
       name: [this.initialData?.name || "", Validators.required],
       description: [this.initialData?.description || "", Validators.required],
-      image: [this.initialData?.imagePath || "", Validators.required],
+      imagePath: [this.initialData?.imagePath || "", Validators.required],
       ingredients: this.fb.array([]),
     })
   
@@ -28,6 +27,25 @@ export class RecipeFormComponent implements OnInit {
       this.initialData.ingredients.forEach((ingredient: any) => {
         this.addIngredient(ingredient)
       });
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes["initialData"] && this.initialData) {
+      this.form.patchValue({
+        name: this.initialData.name || "",
+        description: this.initialData.description || "",
+        imagePath: this.initialData.imagePath || "",
+      })
+
+      const ingredientsFG = this.initialData.ingredients.map((ing: any) =>
+        this.fb.group({
+          name: [ing.name, Validators.required],
+          amount: [ing.amount, [Validators.required, Validators.min(1)]]
+        })
+      )
+
+      this.form.setControl("ingredients", this.fb.array(ingredientsFG));
     }
   }
 

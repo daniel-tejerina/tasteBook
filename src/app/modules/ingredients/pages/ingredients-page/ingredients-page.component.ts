@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Ingredient } from '@core/models/ingredient.model';
 import { Recipe } from '@core/models/recipe.model';
 import recipes from "@data/recipes.json"
+import { RecipeService } from '@shared/services/recipe.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ingredients-page',
@@ -15,10 +17,19 @@ export class IngredientsPageComponent implements OnInit {
 
   ingredients: Ingredient[] = []
 
-  constructor(private http: HttpClient) {};
+  constructor(private http: HttpClient, private _recipesService: RecipeService) {};
 
   ngOnInit(): void {
-    this.ingredients = this.getGroupedIngredients(this.recipes);
+    this._recipesService.getRecipes().subscribe({
+      next: (recipes) => {
+        this.recipes = recipes;
+        this.ingredients = this.getGroupedIngredients(this.recipes);
+      },
+      error: (err) => {
+        console.log("Error al obtener recetas", err);
+        Swal.fire("Error", "No se pudieron cargar las recetas", "error")
+      }
+    })
   }
   
 
@@ -32,10 +43,11 @@ export class IngredientsPageComponent implements OnInit {
     const result: { [name: string] :number } = {} 
     
     ingredients.forEach(ingredient => {
+      const amount = Number(ingredient.amount);
       if (result[ingredient.name]) {
-        result[ingredient.name] += ingredient.amount;
+        result[ingredient.name] += amount;
       } else {
-        result[ingredient.name] = ingredient.amount;        
+        result[ingredient.name] = amount;        
       }
     })
 
