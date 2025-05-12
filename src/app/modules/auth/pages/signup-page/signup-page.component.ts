@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@modules/auth/services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup-page',
@@ -38,10 +39,22 @@ export class SignupPageComponent {
       next: (res) => {
         this.cookie.set("token", res.idToken, 4, "/");
         console.log("SignUp exitoso!");
-        this.router.navigate(["/auth/login"]);
+        Swal.fire({
+          icon: "success",
+          title: "Cuenta creada",
+          text: "Tu cuenta fue creada exitosamente. Ahora podes iniciar sesion",
+          confirmButtonText: "Ir al login"
+        }).then(() => {
+          this.router.navigate(["/auth/login"]);
+        })
       },
       error: () => {
         this.errorSession = true;
+        Swal.fire({
+          icon: "error",
+          title: "Error al crear la cuenta",
+          text: "Verifica que el email no este en uso"
+        })
         console.log("Credenciales incorrectas")
       }
     })

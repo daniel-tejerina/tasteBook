@@ -14,6 +14,8 @@ import Swal from 'sweetalert2';
 })
 export class IngredientsPageComponent implements OnInit {
   recipes: Recipe[] = recipes;
+  sortColumn: "name" | "amount" = "name";
+  sortDirection: "asc" | "desc" = "asc";
 
   ingredients: Ingredient[] = []
 
@@ -60,6 +62,15 @@ export class IngredientsPageComponent implements OnInit {
     const groupedIngredients = this.sumIngredientsByName(allIngredients);
 
     return Object.entries(groupedIngredients).map(([name, amount]) => ({ name, amount }));
+  }
+
+  toggleSort(column: "name" | "amount") {
+    if (this.sortColumn === column) {
+      this.sortDirection = this.sortDirection === "asc" ? "desc" : "asc";
+    } else {
+      this.sortColumn = column;
+      this.sortDirection = "asc";
+    }
   }
 
 }

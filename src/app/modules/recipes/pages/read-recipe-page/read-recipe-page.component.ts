@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from '@core/models/recipe.model';
 import { RecipeService } from '@shared/services/recipe.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-read-recipe-page',
@@ -35,7 +36,25 @@ export class ReadRecipePageComponent implements OnInit {
     this.router.navigate(["/recipes/edit", this.recipeId])
   }
 
-  onDelete() {
-    console.log("Eliminar")
+  onDelete(id: string) {
+    console.log("Borrar", id)
+    Swal.fire({
+      title: "¿Estas seguro?",
+      text: "Esta accion no puede deshacerse",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Si, eliminar",
+      cancelButtonText: "Cancelar"
+    }).then(result => {
+      if (result.isConfirmed) {
+        this._recipesService.deleteRecipe(id).subscribe(() => {
+          Swal.fire("¡Eliminada!", "La receta fue eliminada correctamente.", "success");
+
+          this.router.navigate(["/"])
+        })
+      }
+    })
   }
 }

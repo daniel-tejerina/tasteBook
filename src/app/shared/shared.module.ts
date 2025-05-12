@@ -8,6 +8,7 @@ import { CardContainerComponent } from './components/card-container/card-contain
 import { AuthFormComponent } from './components/auth-form/auth-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecipeFormComponent } from './components/recipe-form/recipe-form.component';
+import { OrderRecipesPipe } from './pipes/order-recipes.pipe';
 
 
 
@@ -18,7 +19,8 @@ import { RecipeFormComponent } from './components/recipe-form/recipe-form.compon
     RecipeCardComponent,
     CardContainerComponent,
     AuthFormComponent,
-    RecipeFormComponent
+    RecipeFormComponent,
+    OrderRecipesPipe
   ],
   imports: [
     CommonModule,
@@ -27,12 +29,15 @@ import { RecipeFormComponent } from './components/recipe-form/recipe-form.compon
     FormsModule
   ],
   exports: [
+    // COMPONENTS
     NavBarComponent,
     SectionHeaderComponent,
     RecipeCardComponent,
     CardContainerComponent,
     AuthFormComponent,
     RecipeFormComponent,
+    // PIPES
+    OrderRecipesPipe
   ]
 })
 export class SharedModule { }

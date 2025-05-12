@@ -4,11 +4,21 @@
     <table class="table mt-4">
         <thead>
             <tr>
-                <th class="scope">Nombre</th>
-                <th class="scope">Cantidad</th>
+                <th class="scope" (click)="toggleSort('name')" style="cursor: pointer">
+                    Nombre
+                    <span *ngIf="sortColumn === 'name'">
+                        {{ sortDirection === 'asc' ? '▲' : '▼' }}
+                    </span>
+                </th>
+                <th class="scope" (click)="toggleSort('amount')" style="cursor: pointer">
+                    Cantidad
+                    <span *ngIf="sortColumn === 'amount'">
+                        {{ sortDirection === 'asc' ? '▲' : '▼' }}
+                    </span>
+                </th>
             </tr>
         </thead>
-        <tbody class="table-group-divider" *ngFor="let ingredient of ingredients">
+        <tbody class="table-group-divider" *ngFor="let ingredient of ingredients | orderRecipes:sortColumn:sortDirection">
             <tr>
                 <td>{{ingredient.name}}</td>
                 <td>{{ingredient.amount}}</td>

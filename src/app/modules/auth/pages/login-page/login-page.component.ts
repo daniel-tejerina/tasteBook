@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@modules/auth/services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-page',
@@ -36,14 +37,19 @@ export class LoginPageComponent implements OnInit {
     const { email, password } = this.formLogin.value;
     this._auth.sendCredentials(email, password).subscribe({
       next: (res) => {
-        console.log("response", res);
-        console.log("toke", res.idToken);
+        // console.log("response", res);
+        // console.log("toke", res.idToken);
         this.cookie.set("token", res.idToken, 4, "/");
         console.log("Login exitoso!");
         this.router.navigate(["/"]);
       },
       error: () => {
         this.errorSession = true;
+        Swal.fire({
+          icon: "error",
+          title: "Credenciales incorrectas",
+          text: "Revisa tu email y contraseña, e intenta nuevamente."
+        })
         console.log("Credenciales incorrectas")
       }
     })
