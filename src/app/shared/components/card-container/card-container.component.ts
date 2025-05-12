@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Recipe } from '@core/models/recipe.model';
+import { FavoritesService } from '@shared/services/favorites.service';
 import { RecipeService } from '@shared/services/recipe.service';
 import Swal from 'sweetalert2';
 
@@ -15,7 +16,11 @@ export class CardContainerComponent {
   @Input() searchTerm: string = "";
   filteredRecipes: Recipe[] = [];
 
-  constructor(private router: Router, private _recipesService: RecipeService) {}
+  constructor(
+    private router: Router, 
+    private _recipesService: RecipeService,
+    private _favoritesService: FavoritesService
+  ) {}
 
   receiveData(event: string): void {
     console.log("Estoy en el componente CardContainer:", event);
@@ -45,6 +50,7 @@ export class CardContainerComponent {
     }).then(result => {
       if (result.isConfirmed) {
         this._recipesService.deleteRecipe(id).subscribe(() => {
+          this._favoritesService.removeFavorite(id);
           Swal.fire("¡Eliminada!", "La receta fue eliminada correctamente.", "success");
 
           this.loadRecipes();

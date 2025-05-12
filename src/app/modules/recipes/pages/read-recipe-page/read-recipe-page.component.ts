@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from '@core/models/recipe.model';
+import { FavoritesService } from '@shared/services/favorites.service';
 import { RecipeService } from '@shared/services/recipe.service';
 import Swal from 'sweetalert2';
 
@@ -18,6 +19,7 @@ export class ReadRecipePageComponent implements OnInit {
     private route: ActivatedRoute,
     private _recipesService: RecipeService,
     private router: Router,
+    private _favoritesService: FavoritesService
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +52,7 @@ export class ReadRecipePageComponent implements OnInit {
     }).then(result => {
       if (result.isConfirmed) {
         this._recipesService.deleteRecipe(id).subscribe(() => {
+          this._favoritesService.removeFavorite(id);
           Swal.fire("¡Eliminada!", "La receta fue eliminada correctamente.", "success");
 
           this.router.navigate(["/"])
