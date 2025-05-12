@@ -39,7 +39,12 @@ export class LoginPageComponent implements OnInit {
       next: (res) => {
         // console.log("response", res);
         // console.log("toke", res.idToken);
-        this.cookie.set("token", res.idToken, 4, "/");
+        // console.log(res.expiresIn);
+
+        const expires = new Date();
+        expires.setSeconds(expires.getSeconds() + parseInt(res.expiresIn));
+        
+        this.cookie.set("token", res.idToken, { expires, path: "/" });
         console.log("Login exitoso!");
         this.router.navigate(["/"]);
       },
